@@ -24,7 +24,7 @@ Web Application to store Blood Glucose Meter measurements from different devices
 
 Fill _www/config.js_ with your Firebase credentials
 
-`ionic serve --all
+`ionic serve --all`
 
 ### Editing
 
