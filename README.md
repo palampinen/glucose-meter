@@ -1,6 +1,6 @@
 # Glucose notes
 
-![Glucose Meter](https://raw.githubusercontent.com/palampinen/glucose-meter/master/glucose-notes.gif)
+![Glucose Meter](https://raw.githubusercontent.com/palampinen/glucose-meter/master/app.jpg)
 
 App to store Blood Glucose Meter measurements from different devices and compare them.
 
