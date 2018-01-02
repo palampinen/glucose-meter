@@ -67,7 +67,7 @@ angular
       Highcharts.chart('chart-container', {
         chart: {
           backgroundColor: 'transparent',
-          type: 'line',
+          type: 'spline',
           style: {
             fontFamily: 'Work Sans',
           },
@@ -133,7 +133,7 @@ angular
           {
             name: MeasurementTypes.LIBRE,
             data: series1,
-            color: 'rgba(90, 119, 237, 0.6)',
+            color: 'rgba(90, 119, 237, 0.65)',
             marker: {
               fillColor: '#5a77ed',
             },
@@ -141,21 +141,21 @@ angular
           {
             name: MeasurementTypes.ACCU,
             data: series2,
-            color: 'rgba(102, 102, 102, 0.6)',
+            color: 'rgba(102, 102, 102, 0.65)',
             marker: {
               fillColor: '#666',
             },
           },
         ],
         plotOptions: {
-          line: {
+          spline: {
             marker: {
-              radius: 3,
+              radius: 2,
               lineWidth: 0,
               symbol: 'circle',
               states: {
                 hover: {
-                  radius: 4,
+                  radius: 3,
                   lineWidthPlus: 2,
                 },
               },

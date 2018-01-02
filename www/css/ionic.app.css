@@ -10227,6 +10227,9 @@ h1.title--account {
 
 @media screen and (min-width: 768px) {
   .bar-header .title-accent {
+    position: relative;
+    top: -10px;
+    margin-left: 10px;
     display: inline-block; }
   .bar-header .title {
     margin-left: 1vw; }
