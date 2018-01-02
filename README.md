@@ -2,7 +2,7 @@
 
 ![Glucose Notes](https://raw.githubusercontent.com/palampinen/glucose-meter/master/app.jpg)
 
-App to store Blood Glucose Meter measurements from different devices and compare them.
+Web Application to store Blood Glucose Meter measurements from different devices and compare them.
 
 ## What
 
@@ -22,19 +22,17 @@ App to store Blood Glucose Meter measurements from different devices and compare
 
 `cp www/config.example.js www/config.js`
 
-Fill www/config.js with your Firebase credentials
+Fill _www/config.js_ with your Firebase credentials
 
-```bash
-ionic serve --all
-```
+`ionic serve --all
 
 ## Tech
 
 * UI [Ionic Framework](http://ionicframework.com/) and Angular1.
 
-* Firebase as database and for hosting
-
 * Highcharts for data visualization
+
+* Firebase for storing data
 
 ## Licence
 
