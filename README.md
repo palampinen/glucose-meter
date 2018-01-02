@@ -6,11 +6,11 @@ Web Application to store Blood Glucose Meter measurements from different devices
 
 ## What
 
-> My GF was testing new Glucose Meter device called FreeStyle Libre. The device reads Blood Glucose
+> My GF was testing new Glucose Meter device called FreeStyle Libre. The device reads blood glucose
 > level from NFC tag which is attached to skin.
 >
-> Her old device has been device called Accu-meter. With this device user has to take blood sample
-> everytime manually and measure it with the device.
+> Her old blood glucose meter has been device called Accu-Chek. With this device user has to take
+> blood sample everytime manually and measure it with the device.
 >
 > New device is much faster and convenient for user. Problem has been that FreeStyle Libre readings
 > do not match with readings done with old device.
