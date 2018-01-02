@@ -1,5 +1,5 @@
 {
-  "name": "smiley",
+  "name": "glucose-notes",
   "app_id": "",
   "gulpStartupTasks": [
     "sass",

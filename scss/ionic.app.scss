@@ -1,40 +1,41 @@
+$light: #fff !default;
+$stable: #f9f9fc !default;
+$positive: #46289a !default;
+$calm: #cdece4 !default;
+$balanced: #40b24f !default;
+$energized: #fff046 !default;
+$assertive: #ff5240 !default;
+$royal: #5a77ed !default;
+$dark: #504d5b !default;
+$lightgrey: #eef3f5;
+$lightpurple: #bec3e6;
+$warmgrey: #f2eee6;
+$orange: #ff821e;
+$text-color: #444;
 
-$light:                           #fff !default;
-$stable:                          #F9F9FC !default;
-$positive:                        #46289A !default;
-$calm:                            #CDECE4 !default;
-$balanced:                        #40b24f !default;
-$energized:                       #FFF046 !default;
-$assertive:                       #FF5240 !default;
-$royal:                           #46289A !default;
-$dark:                            #504d5b !default;
-$lightgrey:                       #EEF3F5;
-$lightpurple:                     #BEC3E6;
-$warmgrey:                        #F2EEE6;
-$orange:                          #FF821E;
-$text-color:                      #444;
-
-$button-calm-text:                $royal;
-$button-energized-text:           $dark;
-$button-border-width:             0px;
+$button-calm-text: $royal;
+$button-energized-text: $dark;
+$button-border-width: 0px;
 
 $tabs-height: 56px;
-$bar-height:  56px;
-$font-family-sans-serif: 'proxima-nova', '-apple-system', "Helvetica Neue", sans-serif;
+$bar-height: 56px;
+$font-family-sans-serif: 'Work Sans', '-apple-system', 'Helvetica Neue', sans-serif;
 
 $smiley-animation: cubic-bezier(0.24, 0.81, 0.24, 1);
 
-
 // The path for our ionicons font files, relative to the built CSS in www/css
-$ionicons-font-path: "../lib/ionic/fonts" !default;
+$ionicons-font-path: '../lib/ionic/fonts' !default;
 
 // Include all of Ionic
-@import "www/lib/ionic/scss/ionic";
-@import "scss/style/style";
-
+@import 'www/lib/ionic/scss/ionic';
+@import 'scss/style/style';
 
 /// .tab-item .icon{color:#FCA519;}
-.loading, ion-infinite-scroll  .icon-refreshing { font-size:300%; color:$royal; }
-.center {text-align: center;}
-
-
+.loading,
+ion-infinite-scroll .icon-refreshing {
+  font-size: 300%;
+  color: $royal;
+}
+.center {
+  text-align: center;
+}

@@ -1,0 +1,21 @@
+
+<ion-view title="Glucose Notes" class="tabs-item-hide">
+  <ion-nav-title>
+    <img class="header-smiley-icon" src="img/icon.png"> <span class="title-accent">Chart</span>
+  </ion-nav-title>
+
+  <ion-nav-buttons side="right">
+    <a ng-click="openAddModal()" class="button button-icon button-royal icon ion-android-add"></a>
+  </ion-nav-buttons>
+
+  <ion-content overflow-scroll="true" class="chart-content">
+    <div class="chart-wrap">
+      <div id="chart-container" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
+    </div>
+  </ion-content>
+  <!--
+  <ion-scroll zooming="false" direction="x" style="width: 1500px; height: 600px">
+  </ion-scroll>
+-->
+
+</ion-view>

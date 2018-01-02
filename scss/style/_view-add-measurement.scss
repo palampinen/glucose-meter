@@ -1,0 +1,74 @@
+.bar-header .button.modal-btn-close {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.add-measurement {
+  .input-label {
+    color: #555;
+  }
+
+  .item-input {
+    padding: 7px 20px;
+    border: none;
+  }
+  .button-wrap {
+    padding: 0px 20px;
+  }
+
+  .row {
+    padding: 0;
+    .item-input {
+      padding: 5px 15px;
+    }
+  }
+
+  .value {
+    color: #000;
+    font-weight: 500;
+  }
+
+  .option--now {
+    padding: 3px 0;
+  }
+
+  .link--edit {
+    display: inline-block;
+    color: $royal;
+    text-decoration: none;
+    padding: 0;
+    margin-left: 20px;
+    font-weight: 500;
+    background: transparent;
+    border: none;
+    font-size: 1em;
+    line-height: 1;
+  }
+
+  .datetime {
+    line-height: 30px;
+  }
+}
+
+.view--draw {
+  background: $stable;
+}
+
+.form {
+  width: 100%;
+  margin: 0.5em auto 0.5em;
+  padding: 0 0;
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    box-shadow: none;
+    border-radius: 3px;
+    padding: 0 0.5em;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    &:focus {
+      border-color: $royal;
+    }
+  }
+}

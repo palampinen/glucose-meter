@@ -1,69 +1,84 @@
 
-<ion-view title="Smileys" class="tabs-item-hide" hide-back-button="true">
+<ion-view title="Glucose Notes" class="tabs-item-hide" hide-back-button="true">
     <ion-nav-title>
-      <img class="header-smiley-icon" src="img/icon/arrow-smiley.png"> <span class="title-accent">Smileys</span>
+      <img class="header-smiley-icon" src="img/icon.png"> <span class="title-accent">Measurement history</span>
     </ion-nav-title>
+
+    <ion-nav-buttons side="right">
+      <a ng-click="openAddModal()" class="button button-icon button-royal icon ion-android-add"></a>
+    </ion-nav-buttons>
+  <!--
     <ion-nav-buttons side="right">
       <a ng-href="#/user/{{userName}}" class="button button-icon icon ion-android-person"></a>
     </ion-nav-buttons>
+  -->
 
 
-  <ion-content class="smiley-feed-content" overflow-scroll="true">
-    <div ng-if="loading" class="loading">
-      <ion-spinner icon="android"></ion-spinner>
-    </div>
+  <ion-content class="smiley-feed-content" overflow-scroll="true" ion-sticky>
 
-    <div class="smiley-feed" ng-class="{'compact': !listMode, 'date-separator': showDates}">
-      <div class="list">
-        <div
-          class="item item-complex smiley"
-          ng-repeat="(index, item) in orderedItems = (items | orderBy:'added':true) track by item.$id"
-          ng-class="{
-            lastOfDay: !isInSamePeriod(item.added, orderedItems[index + 1].added),
-            firstOfDay: index === 0 || !isInSamePeriod(item.added, orderedItems[index - 1].added)
-          }"
-        >
-          <div class="date-separator__title" ng-if="index === 0 || !isInSamePeriod(item.added, orderedItems[index - 1].added)">
-            {{getPeriodLabel(item.added)}}
-            <span class="date-rating-avg">Avg {{getTotalRatingsForDate(item.added)}}</span>
-          </div>
-          <div class="item-content">
-            <div class="item item-avatar item-header">
-              <span class="round-img ion-android-contact"></span>
-              <h2>{{item.nick || '-'}}</h2>
-              <p class="time-ago">{{getTimeAgo(item.added)}}</p>
-              <!--<span class="badge badge-royal" ng-if="item.added > lastChecked"> FRESH</span>-->
-              <span class="rating" ng-if="item.rate"><span class="ion-android-star">{{item.rate}}</span></span>
-            </div>
+      <ion-list class="list measurements-list">
 
-            <!--  back-img="{{item.gif || item.img}}"  -->
-            <a
-              class="item item-image"
-              ng-href="#/feed/{{item.$id}}"
-              ng-style="{'background-image':'url(' + (item.gif || item.img) + ')'}"
-            ></a>
-
-            <div class="item item-footer">
-              <a
-                ng-class="{hasLikes: item.like, 'animation-active': animatingItems[item.$id]}"
-                class="item-icon-left like-counter" href
-                ng-click="item.like = item.like + 1; items.$save(item)"
-              >
-                <span class="ion-android-favorite like-animation"></span>
-                <i class="icon ion-android-favorite-outline"></i>
-                <span class="text">{{item.like}}</span>
-              </a>
-            </div>
+        <div class="empty-info" ng-if="!loading && !measurements.length">
+          <span class="empty-state-face">
+            <span class="eye eye--left"></span>
+            <span class="eye eye--right"></span>
+            <span class="mouth"></span>
+          </span>
+          No measurements yet
         </div>
-      </div>
-      </div>
-    </div>
 
-    <ion-infinite-scroll class="infinite" ng-if="!bottomReached" spinner="android" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+        <ion-item class="item measurement-list__item item-divider" ng-if="measurements.length">
+          <div class="measurement-item">
+            <div class="time-ago">Date</div>
+            <span class="measurement">
+              <span class="measurement__type">{{visibleTypes[0]}}</span>
+            </span>
+            <span class="measurement">
+              <span class="measurement__type">{{visibleTypes[1]}}</span>
+            </span>
+            <span class="measurement__diff">
+              +/-
+            </span>
+          </div>
+        </ion-item>
 
+        <ion-item
+          class="item measurement-list__item"
+          ng-repeat="measurement in measurements | orderBy:'added':true"
+        >
+          <div
+            class="measurement-item"
+            on-long-press="showMeasurementDialog(measurement.$id)"
+            ng-click="showMeasurementDialog('')"
+          >
+            <div class="time-ago">{{getTimeAgo(measurement.added)}}</div>
+            <span ng-repeat="type in visibleTypes" class="measurement">
+              <span class="measurement__value">{{formatMeasurement(measurement[type])}}</span>
+            </span>
+            <span class="measurement__diff">
+              {{countDiff(measurement[visibleTypes[1]], measurement[visibleTypes[0]])}}
+            </span>
+          </div>
+          <div class="item__menu" ng-if="visibleDialogId === measurement.$id">
+            <button class="button button-clear button-royal" ng-click="showMeasurementDialog('')">Cancel</button>
+            <!-- <button class="button button-clear button-royal">Edit</button> -->
+            <button class="button button-clear button-assertive" ng-click="removeMeasurement(measurement)">Remove</button>
+          </div>
+        </ion-item>
+      </ion-list>
   </ion-content>
 
-  <a ng-href="#/draw" class="button button-calm icon button-round bottom-right ion-android-add" >
-  </a>
+
+  <div class="measurement-list__item item--summary" ng-if="measurements.length">
+    <div class="measurement-item">
+      <div class="time-ago">Avg</div>
+      <span ng-repeat="type in visibleTypes" class="measurement">
+        <span class="measurement__value">{{formatMeasurement(measurementAverage(type))}}</span>
+      </span>
+      <span class="measurement__diff">
+        {{countDiff(measurementAverage(visibleTypes[1]), measurementAverage(visibleTypes[0]))}}
+      </span>
+    </div>
+  </div>
 
 </ion-view>

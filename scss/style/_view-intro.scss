@@ -2,12 +2,51 @@
   background: $stable;
 }
 
-
 // Intro
-.intro-title { color: $royal; font-weight: 900; margin: 5px 0 30px; font-size: 2em; padding: 0; }
-#logo {position: relative; max-width: 30%; margin: 0px auto 0; text-align: center}
-#smiley {display: block; width: 80%; max-width: 470px; top:20px; position: relative;margin:0 auto 20px;}
-#pen {position:absolute; display: none; left:50%; top:15%; max-width:25%; animation:drawSmiley 6s linear infinite; -webkit-animation: drawSmiley 6s linear infinite; animation: none;}
+.intro-title {
+  color: $royal;
+  font-weight: 700;
+  margin: 5px 0 30px;
+  font-size: 2em;
+  padding: 0;
+}
+#logo {
+  position: relative;
+  margin: 15vw auto 0;
+  text-align: center;
+}
+#smiley {
+  display: block;
+  width: 80%;
+  max-width: 470px;
+  top: 20px;
+  position: relative;
+  margin: 0 auto 20px;
+}
+#pen {
+  position: absolute;
+  display: none;
+  left: 50%;
+  top: 15%;
+  max-width: 25%;
+  animation: drawSmiley 6s linear infinite;
+  -webkit-animation: drawSmiley 6s linear infinite;
+  animation: none;
+}
+.intro-icon {
+  font-size: 70px;
+  padding: 15px;
+  width: 150px;
+  height: 150px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: $royal;
+}
 
 .name-form {
   max-width: 333px;
@@ -25,7 +64,7 @@ h1.title--account {
 .name-input {
   background: transparent;
   .item {
-    background: #FFF;
+    background: #fff;
     padding: 6px;
     input {
       padding: 6px;
@@ -39,8 +78,12 @@ h1.title--account {
   }
 }
 
-.name-input input::-webkit-input-placeholder { color: rgba($royal, 0.5); }
-.name-input input::placeholder { color: rgba($royal, 0.5); }
+.name-input input::-webkit-input-placeholder {
+  color: rgba($royal, 0.5);
+}
+.name-input input::placeholder {
+  color: rgba($royal, 0.5);
+}
 
 .button-save {
   overflow: hidden;
@@ -67,7 +110,6 @@ h1.title--account {
   }
 }
 
-
 @media screen and (min-width: 768px) {
   .intro-page {
     .scroll {
@@ -86,7 +128,7 @@ h1.title--account {
   }
 
   #logo {
-    margin: -60px auto 0;
+    margin: 10vw auto 0;
   }
 
   h1.title--account {
@@ -96,4 +138,3 @@ h1.title--account {
     font-size: 2.6em;
   }
 }
-

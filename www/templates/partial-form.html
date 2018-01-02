@@ -1,0 +1,56 @@
+<div class="add-measurement" ng-controller="AddMeasurementCtrl">
+
+  <div ng-include="'templates/save-form-success.html'" ng-if="saveOK"></div>
+
+  <form class="form" id="measurement-form" ng-if="!saveOK">
+    <div class="list">
+
+      <div class="row">
+        <div class="col">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">FreeStyle Libre</span>
+            <input type="number" placeholder="mmol/L" ng-model="measurement1">
+          </label>
+        </div>
+
+        <div class="col">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Accu-Chek</span>
+            <input type="number" placeholder="mmol/L" ng-model="measurement2">
+          </label>
+        </div>
+      </div>
+
+      <div class="item item-input item-stacked-label">
+        <span class="input-label">Time</span>
+        <div class="option--now">
+          <span class="value">
+             <span ng-if="editTime">Custom</span>
+            <span ng-if="!editTime">Now</span>
+          </span>
+          <button class="link--edit" ng-click="toggleEditTime()">
+            <span ng-if="editTime">Use current time</span>
+            <span ng-if="!editTime">Edit</span>
+          </button>
+        </div>
+
+        <div ng-if="editTime">
+          <input
+            autofocus
+            id="time-input"
+            ng-change="updateTime(measurementTime)"
+            class="datetime"
+            type="datetime-local"
+            ng-model="measurementTime" />
+        </div>
+      </div>
+
+      <div class="button-wrap">
+        <a class="button button-royal button-block" ng-click="submitMeasurements(measurement1, measurement2, editTime, measurementTime)">
+          <span ng-if="!loading">Save</span>
+          <span ng-if="loading" class="button-loader"><ion-spinner></ion-spinner></span>
+        </a>
+      </div>
+    </div>
+  </form>
+</div>

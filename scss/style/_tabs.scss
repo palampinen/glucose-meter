@@ -1,0 +1,15 @@
+.tabs-bottom-tabs .tab-item {
+  top: -3px;
+  position: relative;
+
+  .icon {
+    font-size: 26px;
+    height: 28px;
+  }
+
+  .tab-title {
+    font-weight: 500;
+    font-size: 0.8em;
+    // text-transform: uppercase;
+  }
+}

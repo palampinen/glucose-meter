@@ -6,19 +6,20 @@
   border-radius: 0;
   background-image: none !important;
   // border-bottom: 1px solid rgba(0,0,0,.05) !important;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.06), 0 3px 1px -2px rgba(0,0,0,.1), 0 1px 5px 0 rgba(0,0,0,.06);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.02), 0 3px 1px -2px rgba(0, 0, 0, 0.05),
+    0 1px 5px 0 rgba(0, 0, 0, 0.03);
 
   &.bar .button.button-icon {
-    color: #aaa;
-    top: 0px;
+    color: $royal;
+    top: 2px;
     &:before {
       font-size: 25px;
     }
   }
 
   .header-smiley-icon {
-    margin: 10px 13px 0 0;
-    float: left;
+    margin: 10px 0 0 0;
+    // float: left;
     width: 34px;
     animation: rotate-in 0.35s ease-out;
     transform-origin: 56% 50%;
@@ -71,11 +72,12 @@
   }
 
   .title {
-    text-transform: uppercase;
-    font-size: 1.4em !important;
-    font-weight: 600 !important;
+    text-transform: none;
+    font-size: 1.2em !important;
+    font-weight: 500 !important;
     color: $royal !important;
     top: 1px;
+    margin: 0 20px;
   }
   .back-text {
     top: 2px;
@@ -90,13 +92,12 @@
     }
     .title {
       margin-left: 1vw;
-      &+ .buttons {
+      & + .buttons {
         right: 25px;
       }
     }
   }
 }
-
 
 @media screen and (min-width: 1919px) {
   .bar-header {
@@ -105,4 +106,3 @@
     }
   }
 }
-

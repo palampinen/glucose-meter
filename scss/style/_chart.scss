@@ -1,0 +1,53 @@
+.chart-content {
+  overflow-y: hidden;
+  .scroll {
+    position: relative;
+  }
+}
+.chart-wrap {
+  margin: 10vh 0 0;
+  padding: 20px 0px 20px 0;
+
+  // position: absolute;
+  // left: 0;
+  // top: 0;
+  // height: 600px;
+  // width: 1500px;
+  // overflow-x: scroll;
+}
+
+#chart-container {
+  min-width: 310px;
+  height: 350px;
+  margin: 0 0 0 0 !important;
+
+  // position: absolute;
+  // left: 0;
+  // right: 0;
+  // width: 1500px;
+}
+
+.chart__tooltip {
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(52, 64, 117, 0.15);
+  border: 1px solid rgba(52, 64, 117, 0.05);
+  border-radius: 3px;
+  background: #fff;
+}
+
+.tooltip__value__label {
+  display: block;
+}
+
+.tooltip__value {
+  float: right;
+  font-weight: bold;
+  text-align: right;
+}
+
+.chart__tooltip__header {
+  font-weight: normal;
+  margin-bottom: 7px;
+  display: block;
+  color: $text-color;
+}
