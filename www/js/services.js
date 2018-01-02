@@ -6,15 +6,15 @@ angular
   })
 
   /**
-   * Service that returns smilies data from Firebase.
+   * Service that returns Measurement data from Firebase.
    */
-  .factory('Smiley', function($firebaseArray, CONFIG) {
+  .factory('Measurement', function($firebaseArray, CONFIG) {
     var ref = firebase.database().ref(CONFIG.fbRoot);
     // Add three-way data binding
     return $firebaseArray(ref);
   })
 
-  .factory('SmileyService', function($firebaseArray, $firebaseObject, CONFIG) {
+  .factory('MeasurementService', function($firebaseArray, $firebaseObject, CONFIG) {
     var ref = firebase.database().ref(CONFIG.fbRoot);
 
     // Add three-way data binding
@@ -46,33 +46,6 @@ angular
       },
       remove: function(item) {
         return item.$remove();
-      },
-    };
-  })
-
-  .factory('SmileyStorage', function() {
-    var ref = firebase.storage().ref();
-
-    return {
-      uploadDataUrl: function(file) {
-        return ref.child('images/' + file.name).putString(file.data, 'data_url');
-      },
-    };
-  })
-
-  .factory('Post', function(Smiley, SmileyStorage, Helpers) {
-    return {
-      savePostImg: function(imageData, postData, cb) {
-        SmileyStorage.uploadDataUrl({
-          name: Helpers.composeFileName(postData.added, postData.nick, 'photo'),
-          data: imageData,
-        }).then(function(snapshot) {
-          // Save Smiley to Firebase with Storage Image URL
-          imageData = { img: snapshot.downloadURL };
-          postData = Object.assign(postData, imageData);
-
-          Smiley.$add(postData).then(cb);
-        });
       },
     };
   })
@@ -178,36 +151,11 @@ angular
 
         return _.round(parseFloat(value), 1).toFixed(1);
       },
-      debounce: function(func, wait, immediate) {
-        var timeout;
-        return function() {
-          var context = this,
-            args = arguments;
-          var later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-          };
-          var callNow = immediate && !timeout;
-          clearTimeout(timeout);
-          timeout = setTimeout(later, wait);
-          if (callNow) func.apply(context, args);
-        };
-      },
       composeFileName: function(time, userName, prefix) {
         var imagePrefix = prefix || 'glucose';
         var formattedUserName = userName.replace(/ /g, '-');
 
         return imagePrefix + '-' + formattedUserName + '-' + time + '.png';
       },
-    };
-  })
-  // background image directive
-  .directive('backImg', function() {
-    return function(scope, element, attrs) {
-      attrs.$observe('backImg', function(value) {
-        element.css({
-          'background-image': 'url(' + value + ')',
-        });
-      });
     };
   });

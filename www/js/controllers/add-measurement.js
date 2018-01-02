@@ -2,17 +2,14 @@ angular
   .module('glucoseNotes.controllers')
 
   .controller('AddMeasurementCtrl', function(
+    $ionicScrollDelegate,
     $scope,
     $state,
-    Smiley,
-    SmileyStorage,
-    Post,
-    $ionicScrollDelegate,
     $timeout,
     Helpers,
-    $http,
-    User,
-    MeasurementTypes
+    Measurement,
+    MeasurementTypes,
+    User
   ) {
     var resetForm = function() {
       $scope.measurement1 = null;
@@ -84,6 +81,6 @@ angular
 
       postData = Object.assign({}, staticPostData, measurementData);
 
-      Smiley.$add(postData).then(toStart);
+      Measurement.$add(postData).then(toStart);
     };
   });

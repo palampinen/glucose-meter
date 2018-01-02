@@ -2,11 +2,11 @@ angular
   .module('glucoseNotes.controllers')
   .controller('ChartCtrl', function(
     $scope,
-    SmileyService,
     $timeout,
-    User,
     Helpers,
-    MeasurementTypes
+    MeasurementService,
+    MeasurementTypes,
+    User
   ) {
     // Vars
     var getTimeAgo = Helpers.getTimeAgo;
@@ -28,7 +28,7 @@ angular
     // # Load data
     var loadData = function() {
       $scope.loading = true;
-      SmileyService.findByUser($scope.userName)
+      MeasurementService.findByUser($scope.userName)
         .$loaded()
         .then(function(data) {
           $scope.measurements = data;
