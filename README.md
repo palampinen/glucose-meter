@@ -26,6 +26,12 @@ Fill _www/config.js_ with your Firebase credentials
 
 `ionic serve --all
 
+### Editing
+
+Javascript and HTML code is in `/www`.
+
+Styles can be found in `/scss`.
+
 ## Tech
 
 * UI [Ionic Framework](http://ionicframework.com/) and Angular1.
