@@ -1,16 +1,19 @@
-
 .date-separator__title {
   display: inline-block;
-  color: #aaa;
+  color: #97a4a8;
   padding: 0;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .date-rating-avg {
-  display: inline-block;
+  display: block;
   font-weight: 600;
   text-transform: uppercase;
-  margin-left: 30px;
+  margin-left: 0px;
   color: $royal;
+  span {
+    margin: 0 7px;
+    display: inline-block;
+  }
 }
-

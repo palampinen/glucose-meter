@@ -10095,7 +10095,7 @@ h1.title--account {
     position: relative; }
 
 .chart-wrap {
-  margin: 10vh 0 0;
+  margin: 5vh 0 0;
   padding: 20px 0px 20px 0; }
 
 #chart-container {
@@ -10137,7 +10137,7 @@ h1.title--account {
     border: none;
     background: transparent;
     color: #aaa;
-    font-size: 25px;
+    font-size: 30px;
     border-radius: 50%;
     width: 40px;
     line-height: 40px;
@@ -10153,9 +10153,12 @@ h1.title--account {
       background: #eee; }
 
 .period__title {
+  font-size: 0.85em;
+  line-height: 1.4;
   font-weight: 600;
   display: block;
-  padding-top: 3px; }
+  padding-top: 5px;
+  text-align: center; }
 
 .period {
   margin-bottom: 55px; }
@@ -10180,7 +10183,7 @@ h1.title--account {
   .bar-header .header-smiley-icon {
     margin: 10px 0 0 0;
     width: 34px;
-    animation: rotate-in 0.35s ease-out;
+    animation: drop-in 0.55s cubic-bezier(0.24, 0.81, 0.24, 1);
     transform-origin: 56% 50%; }
   .bar-header .title-accent {
     display: none; }
@@ -10435,6 +10438,23 @@ h1.title--account {
     stroke-width: 6;
     animation: round 0.4s linear;
     animation-fill-mode: forwards; }
+
+.date-separator__title {
+  display: inline-block;
+  color: #97a4a8;
+  padding: 0;
+  text-transform: uppercase;
+  text-align: center; }
+
+.date-rating-avg {
+  display: block;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 0px;
+  color: #5a77ed; }
+  .date-rating-avg span {
+    margin: 0 7px;
+    display: inline-block; }
 
 .popup-container .popup {
   box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);

@@ -14,6 +14,8 @@ angular
     var formatMeasurement = Helpers.formatMeasurement;
     var unwatch;
     var colors = ['#666', '#5a77ed'];
+    var periodAgo = 0;
+    var measurementData;
 
     // Get Username
     $scope.userName = User.get();
@@ -21,28 +23,144 @@ angular
     // Watch update data
     var dataUpdateWatcher = function(changeEvent) {
       if (changeEvent.event === 'child_added') {
-        loadData();
+        loadPeriodData();
       }
     };
 
     // # Load data
-    var loadData = function() {
+    var loadPeriodData = function(direction) {
+      // Do not load if still loading
+      if ($scope.loading) {
+        return;
+      }
+
+      // Set the period
+      if (direction) {
+        periodAgo += direction;
+      }
+
       $scope.loading = true;
+
       MeasurementService.findByUser($scope.userName)
         .$loaded()
         .then(function(data) {
-          $scope.measurements = data;
+          // Stop loading
           $scope.loading = false;
 
+          // Set watcher
           unwatch = data.$watch(dataUpdateWatcher);
 
-          initChart(data);
+          // Filter by period
+          $scope.measurementData = _.filter(data, function(d) {
+            return Helpers.filterDataByPeriod(d, periodAgo);
+          });
+
+          // Draw Chart
+          initChart($scope.measurementData);
         });
     };
 
+    // # Periodic data
+    var periodAgo = 0;
+    var periods = {
+      WEEK: 'week',
+      DAY: 'day',
+    };
+
+    var chosenPeriod = periods.WEEK;
+    var startDate = moment().startOf('week');
+    var prevStartDate = moment()
+      .subtract(1, 'week')
+      .startOf('week');
+
+    var getPeriodFormats = function(period) {
+      switch (period) {
+        case periods.WEEK:
+          return {
+            same: 'This Week',
+            prev: 'Last Week',
+            dateString: 'Week ',
+            dateFormat: 'w',
+            id: 'weeks',
+          };
+
+        case periods.DAY:
+          return {
+            same: 'Today',
+            prev: 'Yesteday',
+            dateString: '',
+            dateFormat: 'ddd D.M.',
+            id: 'days',
+          };
+      }
+    };
+
+    $scope.isNextWeekInFuture = function() {
+      return periodAgo <= 0;
+    };
+
+    $scope.isNextWeekInFuture = function() {
+      return periodAgo <= 0;
+    };
+
+    $scope.isInSamePeriod = function(a, b) {
+      return a && b && moment(a).isSame(moment(b), chosenPeriod);
+    };
+
+    $scope.getPeriodLabel = function() {
+      var format = getPeriodFormats(chosenPeriod);
+      var momentDate = moment().subtract(periodAgo, format.id);
+
+      if (momentDate.isSame(startDate, chosenPeriod)) {
+        return format.same;
+      }
+
+      if (momentDate.isSame(prevStartDate, chosenPeriod)) {
+        return format.prev;
+      }
+
+      return format.dateString + momentDate.format(format.dateFormat);
+    };
+
+    $scope.getTotalRatingsForDate = function(type) {
+      var format = getPeriodFormats(chosenPeriod);
+      var momentDate = moment().subtract(periodAgo, format.id);
+      var measurementsForType = ($scope.measurementData || []).filter(function(measurement) {
+        return (
+          measurement[MeasurementTypes[type]] &&
+          momentDate.isSame(moment(measurement.added), chosenPeriod)
+        );
+      });
+
+      var avg = '--';
+
+      if (measurementsForType.length) {
+        avg = _.round(
+          (measurementsForType || []).reduce(function(acc, measurement) {
+            return acc + (measurement[MeasurementTypes[type]] || 0);
+          }, 0) / measurementsForType.length,
+          1
+        );
+      }
+
+      return `${avg}`;
+    };
+
+    $scope.loadPrevPeriod = function() {
+      loadPeriodData(1);
+    };
+    $scope.loadNextPeriod = function() {
+      loadPeriodData(-1);
+    };
+
+    $scope.resetPeriodNavigation = function() {
+      periodAgo = 0;
+      loadPeriodData();
+    };
+
     // # Load data on enter
-    loadData();
-    $scope.$on('$ionicView.enter', loadData);
+    loadPeriodData();
+    // $scope.$on('$ionicView.enter', loadPeriodData);
 
     // # Initialize Chart
     var initChart = function(data) {
@@ -65,6 +183,9 @@ angular
       });
 
       Highcharts.chart('chart-container', {
+        lang: {
+          noData: 'No data for selected week',
+        },
         chart: {
           backgroundColor: 'transparent',
           type: 'spline',
@@ -91,7 +212,6 @@ angular
           },
           tickWidth: 0,
           lineWidth: 0,
-          // type: 'datetime',
         },
         legend: {
           enabled: true,
@@ -168,6 +288,18 @@ angular
                 lineWidthPlus: 0,
               },
             },
+          },
+        },
+
+        noData: {
+          position: {
+            y: -50,
+          },
+          style: {
+            color: '#BBBBBB',
+            fontWeight: 400,
+            fontFamily: 'Work Sans',
+            fontSize: 13,
           },
         },
 

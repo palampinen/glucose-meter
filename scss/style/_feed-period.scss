@@ -1,4 +1,3 @@
-
 .period-header {
   height: 60px;
   background: transparent;
@@ -10,12 +9,11 @@
   max-width: 400px;
   margin: 0 auto;
 
-
   .button-navigate {
     border: none;
     background: transparent;
     color: #aaa;
-    font-size: 25px;
+    font-size: 30px;
     border-radius: 50%;
     width: 40px;
     line-height: 40px;
@@ -33,13 +31,15 @@
       background: #eee;
     }
   }
-
 }
 
 .period__title {
+  font-size: 0.85em;
+  line-height: 1.4;
   font-weight: 600;
   display: block;
-  padding-top: 3px;
+  padding-top: 5px;
+  text-align: center;
 }
 
 .period {
@@ -54,4 +54,3 @@
 
 @media screen and (max-width: 767px) {
 }
-

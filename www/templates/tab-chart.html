@@ -5,17 +5,45 @@
   </ion-nav-title>
 
   <ion-nav-buttons side="right">
-    <a ng-click="openAddModal()" class="button button-icon button-royal icon ion-android-add"></a>
+    <a ng-click="resetPeriodNavigation(); openAddModal()" class="button button-icon button-royal icon ion-android-add"></a>
   </ion-nav-buttons>
 
   <ion-content overflow-scroll="true" class="chart-content">
-    <div class="chart-wrap">
-      <div id="chart-container" style="min-width: 310px; height: 360px; margin: 0 auto"></div>
+
+    <div class="period">
+      <div class="period-header">
+        <div>
+          <button class="button-navigate" ng-disabled="loading" ng-click="loadPrevPeriod()">
+            <i class="icon ion-ios-arrow-back"></i>
+          </button>
+        </div>
+
+        <div class="period__title" ng-if="!loading">
+          <div class="date-separator__title">{{getPeriodLabel()}}</div>
+          <div class="date-rating-avg">
+            <span>LIBRE {{getTotalRatingsForDate('LIBRE')}}</span>
+            <span>ACCU {{getTotalRatingsForDate('ACCU')}}</span>
+          </div>
+        </div>
+        <div class="inline-loader" ng-if="loading">
+          <ion-spinner icon="android"></ion-spinner>
+        </div>
+
+        <div>
+          <button class="button-navigate" ng-disabled="loading || isNextWeekInFuture()" ng-click="loadNextPeriod()">
+            <i class="icon ion-ios-arrow-forward"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div id="chart-container" style="min-width: 310px; height: 360px; margin: 0 auto"></div>
+      </div>
     </div>
   </ion-content>
+
   <!--
   <ion-scroll zooming="false" direction="x" style="width: 1500px; height: 600px">
   </ion-scroll>
--->
-
+  -->
 </ion-view>

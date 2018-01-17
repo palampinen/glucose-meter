@@ -21,7 +21,7 @@
     margin: 10px 0 0 0;
     // float: left;
     width: 34px;
-    animation: rotate-in 0.35s ease-out;
+    animation: drop-in 0.55s $smiley-animation;
     transform-origin: 56% 50%;
   }
   .title-accent {

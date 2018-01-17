@@ -106,6 +106,21 @@ angular
 
   .factory('Helpers', function() {
     return {
+      getLoadDate: function(periodsAgo) {
+        var ago = periodsAgo || 0;
+        return moment()
+          .startOf('isoWeek')
+          .subtract(ago, 'weeks')
+          .valueOf();
+      },
+
+      filterDataByPeriod: function(datum, periodAgo) {
+        var before = this.getLoadDate(periodAgo);
+        var after = this.getLoadDate(periodAgo - 1);
+
+        return datum.added >= before && datum.added < after;
+      },
+
       getTimeAgo: function(timeAgo) {
         if (!timeAgo) {
           return '';
@@ -144,6 +159,7 @@ angular
 
         return `${prefix}${diff}`;
       },
+
       formatMeasurement(value) {
         if (_.isNil(value)) {
           return '-';
@@ -151,6 +167,7 @@ angular
 
         return _.round(parseFloat(value), 1).toFixed(1);
       },
+
       composeFileName: function(time, userName, prefix) {
         var imagePrefix = prefix || 'glucose';
         var formattedUserName = userName.replace(/ /g, '-');
